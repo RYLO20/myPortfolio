@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio - About</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="page-about"> <!-- Added class here -->
+
+    <!-- === NEW HEADER START === -->
+    <header class="main-header">
+        <div class="container header-container">
+            <div class="brand-logo">
+                <a href="index.html">Ryan Anthony Terrado</a>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html" class="nav-link" id="nav-home">Home</a></li>
+                    <li><a href="about-me.html" class="nav-link" id="nav-about">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <!-- === NEW HEADER END === -->
+
+    <main>
+        <section id="about-me" class="about-section">
+            <div class="container">
+                <h2>About Me</h2>
+                <div class="about-content">
+                    <img src="your-profile-image.jpg" alt="Ryan Anthony Terrado" class="profile-picture"> <!-- Remember to change this -->
+                    <p class="about-me-text">
+                        Hello! I'm Ryan Anthony Terrado, a passionate and detail-oriented Visual & Graphics Designer based in [Your Location, e.g., the Philippines]. I specialize in creating compelling visual identities, engaging marketing materials, and user-friendly digital experiences.
+                    </p>
+                    <p class="about-me-text">
+                        With a strong foundation in design principles and proficiency in tools like Adobe Photoshop, Illustrator, and Figma, I strive to translate complex ideas into clear, impactful visuals. Whether it's crafting a memorable logo, designing eye-catching social media graphics, or developing intuitive UI layouts, my goal is always to exceed client expectations and deliver designs that resonate with the target audience.
+                    </p>
+                    <p class="about-me-text">
+                        Let's create something amazing together!
+                    </p>
+                    </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>© <span id="current-year"></span> Ryan Anthony Terrado. Elevating Visual Experiences.</p>
+    </footer>
+
+     <script>
+        // Simple script to set footer year
+        document.addEventListener('DOMContentLoaded', () => {
+            const yearSpan = document.getElementById('current-year');
+            if (yearSpan) {
+                yearSpan.textContent = new Date().getFullYear();
+            }
+        });
+    </script>
+</body>
+</html>
