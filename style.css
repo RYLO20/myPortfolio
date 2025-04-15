@@ -1,0 +1,561 @@
+/* --- Global Styles & Variables --- */
+:root {
+    --primary-blue: #0a66c2; /* LinkedIn Blue variation */
+    --dark-blue: #1d2d44;   /* Deep Blue/Black */
+    --medium-gray: #adb5bd;
+    --light-gray: #f8f9fa;
+    --text-dark: #212529;
+    --text-light: #ffffff;
+    --accent-blue: #4d8af0; /* Lighter blue for accents/hover */
+    --danger-red: #e74c3c;
+    --danger-red-hover: #c0392b;
+    --success-green: #2ecc71;
+    --success-green-hover: #27ae60;
+
+    --font-primary: 'Inter', sans-serif;
+    --base-font-size: 16px;
+    --border-radius: 8px;
+    --box-shadow-light: 0 4px 15px rgba(0, 0, 0, 0.06);
+    --box-shadow-medium: 0 6px 20px rgba(0, 0, 0, 0.1);
+    --transition-speed: 0.3s;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-primary);
+    line-height: 1.7;
+    color: var(--text-dark);
+    background-color: var(--text-light);
+    font-size: var(--base-font-size);
+    overflow-x: hidden;
+}
+
+/* --- Utility Classes --- */
+.container {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.loading-text {
+    text-align: center;
+    color: var(--medium-gray);
+    padding: 40px;
+    font-style: italic;
+}
+
+/* --- Buttons --- */
+.button {
+    display: inline-block;
+    padding: 12px 28px;
+    border: none;
+    border-radius: var(--border-radius);
+    font-weight: 600;
+    font-size: 0.95em;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color var(--transition-speed) ease, transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+    text-align: center;
+}
+
+.button:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--box-shadow-medium);
+}
+
+.primary-button {
+    background-color: var(--primary-blue);
+    color: var(--text-light);
+}
+.primary-button:hover {
+    background-color: var(--accent-blue);
+}
+
+.secondary-button {
+    background-color: var(--light-gray);
+    color: var(--text-dark);
+    border: 1px solid #dee2e6;
+}
+.secondary-button:hover {
+    background-color: #e9ecef;
+}
+
+.danger-button {
+    background-color: var(--danger-red);
+    color: var(--text-light);
+}
+.danger-button:hover {
+    background-color: var(--danger-red-hover);
+}
+
+.success-button {
+    background-color: var(--success-green);
+    color: var(--text-light);
+}
+.success-button:hover {
+    background-color: var(--success-green-hover);
+}
+
+/* --- Header --- */
+.header {
+    background: linear-gradient(135deg, var(--dark-blue) 0%, var(--primary-blue) 100%);
+    color: var(--text-light);
+    padding: 80px 0 60px 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden; /* Contain pseudo-elements */
+}
+
+/* Optional: Subtle background pattern/effect */
+.header::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100px; /* Adjust height */
+    background: linear-gradient(to top, rgba(255, 255, 255, 0.05), transparent);
+    opacity: 0.5;
+}
+
+
+.header-content {
+    position: relative; /* Ensure content is above pseudo-elements */
+    z-index: 1;
+    animation: fadeInDown 1s ease-out;
+}
+
+.header h1 {
+    font-size: 3em; /* Slightly larger */
+    margin-bottom: 15px;
+    font-weight: 700;
+    letter-spacing: -1px;
+}
+
+.header p {
+    font-size: 1.25em;
+    font-weight: 300;
+    opacity: 0.9;
+}
+
+/* --- Section Base & Headings --- */
+section {
+    padding: 80px 0; /* Increased padding */
+}
+
+section:nth-of-type(even) {
+    background-color: var(--light-gray);
+}
+
+section h2 {
+    text-align: center;
+    font-size: 2.5em; /* Larger headings */
+    margin-bottom: 60px;
+    color: var(--dark-blue);
+    font-weight: 700;
+    position: relative;
+    display: block; /* Change from inline-block */
+}
+
+section h2::after {
+    content: '';
+    display: block;
+    width: 70px; /* Wider underline */
+    height: 4px;
+    background: var(--primary-blue);
+    margin: 15px auto 0; /* Increased margin */
+    border-radius: 2px;
+    animation: growWidth 1s ease-out 0.5s forwards;
+    transform: scaleX(0); /* Start scaled to 0 */
+    transform-origin: center;
+}
+
+/* --- Projects Section --- */
+.projects-section {
+    /* Animation handled by Intersection Observer in JS */
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Slightly larger min size */
+    gap: 35px; /* Increased gap */
+}
+
+.project-card {
+    background: var(--text-light);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow-light);
+    overflow: hidden;
+    transition: transform var(--transition-speed) ease-out, box-shadow var(--transition-speed) ease-out;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    /* Animation handled by Intersection Observer in JS */
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.project-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: var(--box-shadow-medium);
+}
+
+.project-card img {
+    width: 100%;
+    height: 250px; /* Increased height */
+    object-fit: cover;
+    display: block;
+    border-bottom: 1px solid #eee; /* Subtle separation */
+}
+
+.project-info {
+    padding: 25px; /* Increased padding */
+    flex-grow: 1; /* Allow info to fill space if card heights differ */
+}
+
+.project-info h3 {
+    font-size: 1.3em;
+    margin-bottom: 8px;
+    color: var(--dark-blue);
+    font-weight: 600;
+}
+
+.project-info p {
+    font-size: 0.95em;
+    color: #555; /* Keep description color softer */
+    margin-bottom: 0; /* Remove bottom margin if it's the last element */
+}
+
+/* --- Contact Section --- */
+.contact-section {
+    background-color: var(--dark-blue);
+    color: var(--text-light);
+    text-align: center;
+}
+
+.contact-section h2 {
+    color: var(--text-light); /* Override default */
+}
+.contact-section h2::after {
+     background: var(--accent-blue); /* Use accent for contrast */
+}
+
+.contact-section p {
+    margin-bottom: 40px;
+    font-size: 1.1em;
+    color: var(--medium-gray); /* Lighter text on dark bg */
+    max-width: 600px; /* Constrain width */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+.contact-button {
+    /* Inherit base button styles */
+    padding: 14px 32px; /* Larger padding */
+    border-radius: 50px; /* Pill shape */
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease, background-color var(--transition-speed) ease;
+    box-shadow: none; /* Remove base shadow for specific styling */
+}
+
+.contact-button:hover {
+    transform: translateY(-4px) scale(1.03); /* More pronounced hover */
+}
+
+.email-button {
+    background-color: var(--accent-blue);
+    color: var(--text-light);
+}
+.email-button:hover {
+    background-color: var(--primary-blue);
+    box-shadow: 0 5px 15px rgba(77, 138, 240, 0.3);
+}
+
+.facebook-button {
+    background-color: #1877f2; /* Standard FB blue */
+    color: white;
+}
+.facebook-button svg { fill: white; }
+.facebook-button:hover {
+    background-color: #166fe5; /* Slightly darker FB blue */
+    box-shadow: 0 5px 15px rgba(24, 119, 242, 0.3);
+}
+
+/* --- Footer --- */
+.footer {
+    text-align: center;
+    padding: 30px 20px;
+    margin-top: 0; /* Remove margin if contact is last */
+    background-color: #111827; /* Darker footer bg */
+    color: var(--medium-gray);
+    font-size: 0.9em;
+}
+
+/* --- Modals --- */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(29, 45, 68, 0.85); /* Dark blue overlay */
+    animation: fadeIn 0.4s ease-out;
+}
+
+.modal-content {
+    background-color: var(--text-light);
+    margin: 8% auto; /* Adjust vertical margin */
+    padding: 35px 45px; /* Increased padding */
+    border: none; /* Remove border */
+    width: 90%;
+    max-width: 650px; /* Default max-width */
+    border-radius: var(--border-radius);
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    animation: slideIn 0.5s ease-out;
+}
+
+/* Project Detail Modal Specifics */
+.project-modal-content {
+    max-width: 800px; /* Wider for project details */
+    padding: 0; /* Remove padding to allow image edge-to-edge */
+    overflow: hidden; /* Ensure image corners are rounded if needed */
+}
+#modal-project-image {
+    display: block; /* Make sure it's block */
+    width: 100%;
+    max-height: 70vh; /* Limit image height */
+    object-fit: cover; /* Cover the area */
+    margin-bottom: 25px; /* Space below image */
+}
+#modal-project-content {
+    padding: 10px 45px 35px 45px; /* Padding for text content only */
+}
+#modal-project-title {
+    font-size: 2em;
+    color: var(--dark-blue);
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+.modal-category {
+    display: inline-block;
+    background-color: var(--light-gray);
+    color: var(--primary-blue);
+    padding: 4px 12px;
+    border-radius: 15px;
+    font-size: 0.85em;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+#modal-project-description {
+    font-size: 1.05em;
+    color: #444;
+    line-height: 1.8;
+}
+
+.close-btn {
+    color: var(--medium-gray);
+    position: absolute;
+    top: 15px;
+    right: 25px;
+    font-size: 32px; /* Larger close icon */
+    font-weight: bold;
+    line-height: 1;
+    transition: color var(--transition-speed) ease;
+    z-index: 10; /* Ensure it's above content */
+}
+.project-modal-close { /* Style differently if needed for project modal */
+     color: #fff; /* White on dark image */
+     background-color: rgba(0, 0, 0, 0.3);
+     border-radius: 50%;
+     padding: 0px 8px 4px 8px;
+     top: 25px;
+     right: 35px;
+}
+.close-btn:hover,
+.close-btn:focus {
+    color: var(--dark-blue); /* Darker on hover */
+    text-decoration: none;
+    cursor: pointer;
+}
+.project-modal-close:hover {
+    color: #eee;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* --- Additions for Admin Dashboard --- */
+
+/* Ensure smooth scrolling for anchor links in admin page */
+html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Style the specific admin body if needed beyond inline styles */
+  body.admin-dashboard {
+      font-family: var(--font-primary);
+  }
+  
+  /* Table refinements (minor adjustments perhaps) */
+  .admin-table-container {
+       margin-top: 20px;
+  }
+  .admin-projects-table {
+      box-shadow: none; /* Remove redundant shadow if admin-section has one */
+  }
+  .admin-projects-table tbody tr:last-child td {
+      border-bottom: none; /* Remove border on last table row */
+  }
+  .admin-actions button {
+      vertical-align: middle; /* Align buttons better */
+  }
+  
+  /* Active Sidebar Link */
+  /* JavaScript will need to handle adding/removing 'active' class */
+  .sidebar-nav li a.active {
+      background-color: rgba(255, 255, 255, 0.1);
+      color: var(--text-light);
+      font-weight: 600;
+  }
+  .sidebar-nav li a.active i {
+      color: var(--accent-blue);
+  }
+  
+  /* General Modal Improvements (Ensure consistency) */
+  .modal-content h2 {
+      color: var(--dark-blue);
+      margin-bottom: 25px !important; /* Override potential conflicts */
+      padding-bottom: 10px;
+      border-bottom: 1px solid #eee;
+      font-weight: 600;
+      text-align: left !important; /* Ensure modal title is left-aligned */
+  }
+  .modal-content h2::after { display: none !important;} /* No underline in modal */
+  
+  /* Add these if not already present or refine existing */
+  #add-edit-project-form label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 600;
+      color: #495057;
+  }
+  #add-edit-project-form input[type="text"],
+  #add-edit-project-form input[type="url"],
+  #add-edit-project-form input[type="password"], /* Add password type */
+  #add-edit-project-form textarea {
+      display: block; /* Ensure display block */
+      width: 100%;
+      padding: 12px 15px;
+      margin-bottom: 18px;
+      border: 1px solid #ced4da;
+      border-radius: var(--border-radius);
+      font-size: 1em;
+      line-height: 1.5; /* Improve textarea readability */
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  #add-edit-project-form input:focus,
+  #add-edit-project-form textarea:focus {
+       border-color: var(--accent-blue);
+       box-shadow: 0 0 0 3px rgba(77, 138, 240, 0.25);
+       outline: none;
+  }
+  #add-edit-project-form small {
+      font-size: 0.85em;
+      color: #6c757d;
+      margin-top: -12px;
+      margin-bottom: 18px;
+      display: block;
+  }
+  #add-edit-project-form button[type="submit"] {
+      display: block; /* Ensure button is block */
+      width: auto; /* Or 100% if preferred */
+      min-width: 150px;
+      margin-top: 10px; /* Add some space above button */
+  }
+
+
+/* --- Animations --- */
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp { /* Used by Intersection Observer */
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes growWidth {
+    from { transform: scaleX(0); }
+    to { transform: scaleX(1); }
+}
+
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+@keyframes slideIn {
+    from { transform: translateY(-50px) scale(0.95); opacity: 0; }
+    to { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 992px) {
+    .container { max-width: 960px; }
+    .header h1 { font-size: 2.6em; }
+}
+
+@media (max-width: 768px) {
+    :root { --base-font-size: 15px; }
+    .container { max-width: 720px; }
+    .header { padding: 60px 0 40px 0; }
+    .header h1 { font-size: 2.2em; }
+    .header p { font-size: 1.1em; }
+    section { padding: 60px 0; }
+    section h2 { font-size: 2em; margin-bottom: 40px; }
+    .projects-grid { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+    .project-card img { height: 200px; }
+    .contact-links { flex-direction: column; align-items: center; gap: 15px; }
+    .contact-button { width: 80%; max-width: 300px; justify-content: center; }
+    .modal-content { width: 90%; margin: 15% auto; padding: 25px 30px; }
+    .project-modal-content { max-width: 95%; }
+    #modal-project-content { padding: 10px 30px 30px 30px; }
+     #modal-project-title { font-size: 1.6em; }
+    .admin-container { padding: 20px; } /* Adjust admin padding */
+}
+
+@media (max-width: 576px) {
+    .header h1 { font-size: 1.8em; }
+    .header p { font-size: 1em; }
+    section h2 { font-size: 1.7em; }
+    .projects-grid { grid-template-columns: 1fr; } /* Single column */
+    .button { padding: 10px 22px; font-size: 0.9em;}
+    .contact-button { padding: 12px 25px; }
+    .modal-content { padding: 20px; }
+    .project-modal-content { max-width: 95%; }
+    #modal-project-content { padding: 10px 20px 25px 20px; }
+    .close-btn { font-size: 28px; top: 10px; right: 15px; }
+    .project-modal-close { top: 15px; right: 15px; }
+    .admin-container h1 { font-size: 1.8em; }
+    .admin-projects-table { font-size: 0.85em; } /* Smaller font for table on mobile */
+    .admin-projects-table th, .admin-projects-table td { padding: 8px 10px; }
+}
